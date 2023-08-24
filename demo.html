@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Your Name - Portfolio</title>
+    <style>
+        :root {
+            --bg-body: hsl(0, 0%, 8%);
+            --bg-body2: hsl(0, 0%, 14%);
+            --accent: hsl(153, 71%, 59%);
+            --text1: hsl(0, 0%, 100%);
+            --text2: hsl(0, 0%, 85%);
+            --invalid: hsl(7, 100%, 68%);
+            --fs-18: 1.125rem;
+            --fs-88: 5.5rem;
+            --fs-72: 4.5rem;
+            --fs-40: 2.5rem;
+            --fs-48: 3rem;
+            --fs-36: 2.25rem;
+            --fs-32: 2rem;
+            --fs-24: 1.5rem;
+            --fs-20: 1.25rem;
+            --container: 69.375rem;
+            --transition: 250ms ease-in-out;
+        }
+
+        .wrapper {
+            width: calc(100% - 2rem);
+            max-width: var(--container);
+            margin-inline: auto;
+        }
+
+        /* 600px */
+        @media (min-width: 37.5em) {
+            .wrapper {
+                width: calc(100% - 3.75rem);
+            }
+        }
+
+        /* PROJECTS */
+
+        .projects__wrapper {
+            padding-block: 20px;
+        }
+
+        .projects__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            justify-items: flex-start;
+            text-align: center;
+        }
+
+        /* .projects__headline {
+            grid-column: 1 / span 2;
+            margin-block-end: 0;
+        } */
+
+        .projects__contact {
+            grid-column: 1 / span 2;
+        }
+
+        .projects__item {
+            grid-column: 1 / span 2;
+        }
+
+        .projects__picture {
+            display: block;
+            margin-block-end: 20px;
+        }
+
+        .projects__image {
+            width: 100%;
+            height: auto;
+        }
+
+        .projects__name {
+            font-size: 1.5rem;
+            line-height: 1.3;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-block-end: 7px;
+        }
+
+        .projects__tags {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-block-end: 20px;
+            text-transform: uppercase;
+            flex-wrap: wrap;
+        }
+
+        .projects__links {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        a {
+            font-weight: bold;
+            color: black;
+            text-decoration: none;
+            background-color: transparent;
+        }
+
+
+
+        @media (min-width: 37.5em) {
+            .projects__grid {
+                gap: 60px 24px;
+                justify-items: start;
+                text-align: left;
+            }
+
+            .projects__contact {
+                justify-self: end;
+            }
+
+            .projects__item {
+                grid-column: span 1;
+            }
+
+            .projects__headline,
+            .projects__contact {
+                grid-column: span 1;
+            }
+
+            .projects__contact {
+                align-self: center;
+            }
+
+            .projects__tags,
+            .projects__links {
+                display: block;
+            }
+
+            .projects__tags span {
+                margin-inline-end: 18px;
+            }
+
+            .projects__links a {
+                margin-inline-end: 30px;
+            }
+
+            .project__links {
+                display: block;
+            }
+        }
+
+        @media (min-width: 62.5em) {
+            .projects__grid {
+                gap: 70px 30px;
+            }
+
+            .projects__item {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: repeat(4, auto);
+            }
+
+            .projects__picture {
+                position: relative;
+                grid-column: 1 / 2;
+                grid-row: 1 / 2;
+            }
+
+
+            .projects__item:hover .projects__picture::after {
+                opacity: 0.5;
+            }
+
+            .projects__item:hover .projects__links {
+                opacity: 1;
+            }
+
+            .projects__item:focus-within .projects__links {
+                opacity: 1;
+            }
+
+            .projects__item:focus-within .projects__picture::after {
+                opacity: 0.5;
+            }
+
+            .projects__image {
+                width: 100%;
+                height: auto;
+            }
+
+            .projects__links {
+                grid-column: 1 / 2;
+                grid-row: 1 / 2;
+                justify-self: center;
+                align-self: center;
+                z-index: 1;
+                opacity: 0;
+                transition: opacity 400ms ease-in-out;
+            }
+
+            .projects__links:hover~.projects__picture::after {
+                opacity: 0.5;
+            }
+
+            .projects__tags {
+                margin-block-end: 0;
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+
+            background: linear-gradient(to left,
+                    rgba(7, 27, 82, 1) 0%,
+                    rgba(0, 128, 128, 1) 100%);
+            color: white;
+
+        }
+
+        .nav-item {
+            font-weight: bold;
+        }
+
+        .nav-item:hover {
+            text-decoration: underline;
+        }
+
+        .navbar-light .navbar-nav .nav-link:focus,
+        .navbar-light .navbar-nav .nav-link:hover {
+            color: white;
+        }
+
+        .navbar {
+            margin-bottom: 60px;
+            box-shadow: -3px -3px 20px black;
+        }
+
+        .hero {
+            background-image: url('https://images.unsplash.com/uploads/141103282695035fa1380/95cdfeef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1730&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 200px 0;
+            opacity: 0.9;
+        }
+
+        .section {
+            padding: 60px 0;
+
+        }
+
+        .skills ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .skills ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            box-shadow: -3px -3px 35px black;
+            background: linear-gradient(to left,
+                    rgba(7, 27, 82, 1) 0%,
+                    rgba(0, 128, 128, 1) 100%);
+            color: white;
+            padding: 20px 0;
+        }
+
+        /* New color scheme */
+        .navbar-light .navbar-brand {
+            color: #3498db;
+        }
+
+        .navbar-light .navbar-nav .nav-link {
+            color: white;
+        }
+
+
+        .bg-light {
+            background-color: #ecf0f1;
+        }
+
+        .btn-primary {
+            background-color: #3498db;
+            border-color: #3498db;
+        }
+
+        @media only screen and (max-width: 768px) {
+            a {
+                font-weight: bold;
+                color: rgb(255, 255, 255);
+                text-decoration: none;
+                background-color: transparent;
+            }
+
+            a:hover {
+                color: black;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h5 {
+                font-size: 1.0rem;
+            }
+
+            .header-image {
+                margin-right: -35px !important;
+            }
+
+            .hero {
+                background-size: contain;
+                background-repeat: no-repeat;
+                padding: 60px 0px;
+            }
+        }
+
+        .header-image {
+            margin-right: 15px;
+        }
+
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light header">
+        <img class="header-image"
+            src="https://lh3.googleusercontent.com/a/AAcHTtdsYtNkSnGl6OdIj45RRK8hDhhJ1LIYxnBnOV9jpDz6Qx4=s288-c-no"
+            style="height: 60px; width: 60px; border-radius: 50%;" />
+        <a class="navbar-brand" href="#" style="color: white;">Vaibhav Andhale</a>
+        <button class="navbar-toggler bg-light" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                <li class="nav-item"><a class="nav-link" href="#project">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container text-center">
+            <h1 style="color: black;">Vaibhav Andhale</h1>
+            <h5 style="color: black;">Web Developer</h5>
+        </div>
+    </header>
+
+    <section id="about" class="section">
+        <div class="container" style="border-bottom: 1px solid white;">
+            <h2>About Me</h2>
+            <p>Hello! I'm Vaibhav Andhale, a passionate Full Stack Web Developer from India. With a Master's Degree in
+                Information Technology, I'm skilled in both frontend and backend development. I create user-friendly
+                interfaces using HTML, CSS, and Bootstrap, while also building robust applications with technologies
+                like Node.js and MongoDB. Collaborative by nature, I thrive in cross-functional teams and bring strong
+                problem-solving and communication skills. I'm committed to staying current in the ever-evolving tech
+                landscape. Let's connect and craft remarkable digital experiences together!</p>
+        </div>
+    </section>
+
+    <section id="education" class="section">
+        <div class="container" style="border-bottom: 1px solid white;">
+            <h2>Education</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Master's Degree in Information Technology</h4>
+                    <p>Completed my Master's Degree in Information Technology from Mumbai University. Gained a solid
+                        foundation
+                        in programming, algorithms, and web development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section ">
+        <div class="container" style="border-bottom: 1px solid white;">
+            <h2>Experience</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Ewebcore Technologies Pvt.Ltd</h4>
+                    <p>
+                    <ul>
+                        <li>As a Node.js Developer at Ewebcore Technologies Pvt Ltd, I was responsible for designing,
+                            developing, and maintaining RESTful APIs for
+                            various web applications and projects.</li>
+                        <li>Collaborated with cross-functional teams to gather requirements, plan project timelines, and
+                            ensure seamless integration between front-
+                            end and back-end components.</li>
+                    </ul>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project" class="projects">
+        <div class="wrapper projects__wrapper" style="border-bottom: 1px solid white; padding-bottom: 20px;">
+            <div class="projects__grid">
+                <h2 class="projects__headline header-xl">Projects</h2><br />
+                <div class="projects__item">
+                    <picture class="projects__picture">
+                        <source media="(min-width: 62.5em)" srcset="./images/portfolio.png" />
+                        <img class=" projects__image" src="./images/portfolio.png"
+                            alt="screenshot of design portfolio website" width="343px" height="253px" />
+                    </picture>
+                    <h4 class="projects__name">Design Portfolio</h4>
+                    <p class="projects__tags">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>Bootstrap</span>
+                    </p>
+                    <div class="projects__links">
+                        <a href="" class="underline">View Project</a>
+                        <a href="" class="underline">View Code</a>
+                    </div>
+                </div>
+                <div class="projects__item">
+                    <picture class="projects__picture">
+                        <source media="(min-width: 62.5em)" srcset="./images/academic_attendance.png" />
+                        <img class="projects__image" src="./images/academic_attendance.png"
+                            alt="screenshot of design portfolio website" width="343px" height="253px" />
+                    </picture>
+                    <h4 class="projects__name">Academic Attendance</h4>
+                    <p class="projects__tags">
+                        <span>JavaScript</span>
+                        <span>React Js</span>
+                        <span>Node Js</span>
+                        <span>MongoDB</span>
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>Bootstrap</span>
+                    </p>
+                    <div class="projects__links">
+                        <a href="https://academic-attendance.netlify.app/" target="_blank" class="underline">View
+                            Project</a>
+                        <a href="https://github.com/Vaibhav1015/attendance-management-react.git" target="_blank"
+                            class="underline">View
+                            Code</a>
+                    </div>
+                </div>
+                <div class="projects__item">
+                    <picture class="projects__picture">
+                        <source media="(min-width: 62.5em)" srcset="./images/invoice_generator.png" />
+                        <img class="projects__image" src="./images/invoice_generator.png"
+                            alt="screenshot of design portfolio website" width="343px" height="253px" />
+                    </picture>
+                    <h4 class="projects__name">Invoice Generator</h4>
+                    <p class="projects__tags">
+                        <span>JavaScript</span>
+                        <span>Node Js</span>
+                        <span>MongoDB</span>
+                        <span>Ejs</span>
+                        <span>CSS</span>
+                    </p>
+                    <div class="projects__links">
+                        <a href="https://github.com/Vaibhav1015/attendance-management-react.git" target="_blank"
+                            class="underline">View
+                            Code</a>
+                    </div>
+                </div>
+                <div class="projects__item">
+                    <picture class="projects__picture">
+                        <source media="(min-width: 62.5em)" srcset="./images/lyrico.png" />
+                        <img class="projects__image" src="./images/lyrico.png"
+                            alt="screenshot of design portfolio website" width="343px" height="253px" />
+                    </picture>
+                    <h4 class="projects__name">Lyrico Rest Api's</h4>
+                    <p class="projects__tags">
+                        <span>JavaScript</span>
+                        <span>Node Js</span>
+                        <span>Express Js</span>
+                        <span>MongoDB</span>
+                    </p>
+                    <div class="projects__links">
+                        <a href="https://github.com/Vaibhav1015/attendance-management-react.git" target="_blank"
+                            class="underline">View
+                            Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="skills" class="section ">
+        <div class="container" style="border-bottom: 1px solid white;">
+            <h2>Skills</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3>Technical Skills</h3>
+                    <ul>
+                        <li>JavaScript</li>
+                        <li>Node Js</li>
+                        <li>React Js</li>
+                        <li>MongoDB</li>
+                        <li>HTML/CSS</li>
+                        <li>Bootstrap</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h3>Soft Skills</h3>
+                    <ul>
+                        <li>Problem Solving</li>
+                        <li>Teamwork</li>
+                        <li>Communication</li>
+                        <li>Time Management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>You can reach me at
+                        <a style="margin: 10px;" href="https://www.linkedin.com/in/vaibhav-andhale/" target="_blank"
+                            class="header__social">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24"
+                                aria-labelledby="socialLinkedIn" role="img">
+                                <title id="socialLinkedIn">LinkedIn</title>
+                                <path fill="white" fill-rule="evenodd"
+                                    d="M5.551 3.304c-1.14 0-2.067.926-2.067 2.064 0 1.14.928 2.066 2.067 2.066a2.066 2.066 0 0 0 0-4.13ZM3.767 8.998v11.453h3.562L7.33 8.998H3.767Zm5.798 0V20.45l3.554.002.002-5.668c0-1.454.253-2.941 2.132-2.941 1.851 0 1.851 1.755 1.851 3.036v5.571l3.559-.001v-6.28c0-2.834-.517-5.457-4.27-5.457-1.763 0-2.916.997-3.368 1.85h-.05V8.997h-3.41ZM22.435 24H1.982c-.976 0-1.77-.777-1.77-1.732V1.731C.212.776 1.006 0 1.982 0h20.453c.98 0 1.777.776 1.777 1.73v20.538c0 .955-.797 1.732-1.777 1.732Z" />
+                            </svg>
+                        </a> <a style="margin:0px 5px;" href="https://github.com/Vaibhav1015" target="_blank"
+                            class="header__social">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24"
+                                aria-labelledby="socialGitHub" role="img">
+                                <title id="socialGitHub">GitHub</title>
+                                <path fill="white" fill-rule="evenodd"
+                                    d="M12.304 0C5.506 0 0 5.506 0 12.304c0 5.444 3.522 10.042 8.413 11.672.615.108.845-.261.845-.584 0-.292-.015-1.261-.015-2.291-3.091.569-3.891-.754-4.137-1.446-.138-.354-.738-1.446-1.261-1.738-.43-.23-1.046-.8-.016-.815.97-.015 1.661.892 1.892 1.261 1.107 1.86 2.876 1.338 3.584 1.015.107-.8.43-1.338.784-1.646-2.738-.307-5.598-1.368-5.598-6.074 0-1.338.477-2.446 1.26-3.307-.122-.308-.553-1.569.124-3.26 0 0 1.03-.323 3.383 1.26.985-.276 2.03-.415 3.076-.415 1.046 0 2.092.139 3.076.416 2.353-1.6 3.384-1.261 3.384-1.261.676 1.691.246 2.952.123 3.26.784.861 1.26 1.953 1.26 3.307 0 4.721-2.875 5.767-5.613 6.074.446.385.83 1.123.83 2.277 0 1.645-.015 2.968-.015 3.383 0 .323.231.708.846.584a12.324 12.324 0 0 0 8.382-11.672C24.607 5.506 19.101 0 12.304 0Z" />
+                            </svg>
+                        </a>
+                        <a href="mailto:vaibhavandhale3510@gmail.com" style="margin:0px 5px;" class="social-link"
+                            target="_blank" rel="nofollow noopener noreferrer">
+                            <svg width="25" height="24" class="mail h-p-0-lg h-mb-3-lg" viewBox="0 0 28 28"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill="white"
+                                    d="M2.8 3.00001C2.12163 2.99621 1.4654 3.24121 0.955496 3.68864C0.445591 4.13608 0.117389 4.7549 0.033 5.42801L14 14L27.967 5.42801C27.8826 4.7549 27.5544 4.13608 27.0445 3.68864C26.5346 3.24121 25.8784 2.99621 25.2 3.00001H2.8ZM0 8.15901V22.25C0 23.77 1.253 25 2.8 25H25.2C26.747 25 28 23.77 28 22.25V8.15901L14.741 16.296C14.5178 16.4323 14.2615 16.5043 14 16.5043C13.7385 16.5043 13.4822 16.4323 13.259 16.296L0 8.16001V8.15901Z">
+                                </path>
+                            </svg>
+                        </a>
+                    </h5>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2023 Vaibhav Andhale. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
